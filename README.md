@@ -4,7 +4,7 @@
 
 Python · SQL · 통계 검증 · XGBoost/LightGBM | UIUC 계량경제학·통계학 | ADsP · SQLD | 서울, 대한민국
 
-아래 네 개 프로젝트에는 전체 방법론과 검증 과정, 그리고 데이터가 뒷받침하지 못하는 부분까지 그대로 담았습니다.
+아래 프로젝트에서는 전체 방법론과 검증 과정, 그리고 데이터가 뒷받침하지 못하는 부분까지 그대로 담았습니다.
 
 ![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![XGBoost](https://img.shields.io/badge/XGBoost-006ACC?style=for-the-badge) ![LightGBM](https://img.shields.io/badge/LightGBM-02569B?style=for-the-badge) ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
 
