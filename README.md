@@ -2,55 +2,63 @@
 
 **데이터가 어디서 무너지는지 찾고, 기준을 세워 고치고, 검증한 결과만 의사결정으로 넘깁니다**
 
-Python · SQL · 통계 검증 · XGBoost/LightGBM | UIUC 계량경제학·통계학 | ADsP · SQLD | 서울, 대한민국
+Data Analyst | Risk · Customer · Decision Analytics
+Python · SQL · Statistics | UIUC Econometrics & Statistics | ADsP · SQLD | 서울, 대한민국
 
-아래 프로젝트에서는 전체 방법론과 검증 과정, 그리고 데이터가 뒷받침하지 못하는 부분까지 그대로 담았습니다.
+각 프로젝트에는 결과뿐 아니라 **검증 과정과 분석이 설명하지 못하는 한계까지 함께 기록했습니다.**
 
-![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![XGBoost](https://img.shields.io/badge/XGBoost-006ACC?style=for-the-badge) ![LightGBM](https://img.shields.io/badge/LightGBM-02569B?style=for-the-badge) ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge\&logo=python\&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge\&logo=pandas\&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge\&logo=scikitlearn\&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge\&logo=postgresql\&logoColor=white)
 
 ---
 
 ## 포트폴리오 프로젝트
 
-### [IVE Korea — 광고 부정클릭 탐지 & 매체 리스크 분석](https://github.com/JoshuaKim757/ad-fraud-detection-ive-korea)
+### [IVE Korea — 광고 이상 트래픽 탐지 & 매체 리스크 분석](https://github.com/JoshuaKim757/ad-fraud-detection-ive-korea)
 
-- **기간** · 2026.01 – 2026.03
-- **목표** · 라벨링된 정답 데이터 없이 189개 매체 파트너의 광고 부정클릭 리스크를 탐지·정량화하고, 해당 플래그가 사후 분석용이 아닌 실시간 탐지기로도 작동할 수 있는지 검증
-- **결과** · 1,683만 건의 이벤트 중 고신뢰 이상 클릭 639만 건(38.0%) 식별, ₩260.7M 규모의 노출 금액 정량화, 클린 트래픽 전환율 8.74% → 30.50%로 회복
-- **검증** · LLM 분류 결과는 100건 수기 감사로 대조(94% 일치)한 뒤 사용. Out-of-time 백테스트로 어떤 알림 설계가 이 사건을 실시간으로 잡아낼 수 있었는지, 혹은 없었는지를 그대로 보고
-- **기술** · Python, Pandas, Gemini 2.0 Flash API (룰 기반 + LLM 하이브리드 도메인 분류)
+* **기간** · 2026.01 – 2026.03
+* **문제** · 정답 라벨이 없는 환경에서 189개 매체의 이상 트래픽 리스크를 탐지·정량화하고, 사후 분석 결과가 실제 운영 시점에서도 탐지 가능했는지 검증
+* **결과** · 클릭 1,683만 건 중 고신뢰 이상 트래픽 639만 건(38.0%) 식별. 고신뢰 이상 ₩67.1M, 모니터링 대상 포함 총 ₩260.7M의 재무 노출 규모 정량화. 저위험 잔여 트래픽 CVR 30.50%(전체 플랫폼 8.74%)
+* **검증** · 14개월 과거 데이터, 임계값 민감도 분석, 미래 정보 참조를 제거한 Out-of-Time 백테스트를 수행하고 최초 알림 규칙의 Null Result도 그대로 보고
+* **기술** · Python, Pandas, NumPy, Gemini 2.0 Flash API
 
-### [Starbucks — 리워드 오퍼 낭비 분석](https://github.com/JoshuaKim757/offer-cost-leak-starbucks)
+### [Starbucks — 리워드 오퍼 비용 누수 & 고객 반응 분석](https://github.com/JoshuaKim757/offer-cost-leak-starbucks)
 
-- **기간** · 2025.11 – 2025.12
-- **목표** · 실제 구매 행동을 유도하지 못하고 새는 리워드 비용을 찾아내고, 완료율이 아닌 각 오퍼 유형의 실제 인과 효과를 측정
-- **결과** · Discount 오퍼의 효과(+32.8pp)는 성향점수매칭(PSM) 이후에도 +32.1pp로 유지되어 BOGO의 3배 수준. 20개 고객 세그먼트 중 5개만 리워드 조건 강화로 이득(+$4,134)을 보고, 나머지 15개에 같은 정책을 적용하면 $22,888 손실
-- **검증** · 비용 누수 예측에서 고객 속성이 아니라 발송 채널이 가장 강한 예측 변수였고, 누락 채널 보완만으로 $21,465 개선 여지 확인
-- **기술** · Python, scikit-learn (PSM), XGBoost, statsmodels
+* **기간** · 2025.11 – 2025.12
+* **문제** · 구매 행동 변화 없이 지급되는 리워드 비용을 식별하고, 오퍼별 구매 유도 효과를 추정해 세그먼트별 발송 전략과 예산 재배분으로 연결
+* **결과** · Discount 추정 Lift +32.8pp가 PSM 이후 +32.1pp로 유지되어 BOGO(+9.5pp)의 약 3배. 20개 세그먼트 중 5개만 리워드 조건 강화 시 순편익 +$4,134, 나머지 15개는 동일 조치 시 −$22,888
+* **검증** · 사전 구매활동 비교와 1:1 PSM으로 선택편향을 점검하고 Power Analysis로 세그먼트별 결과의 해석 범위를 확인. Social 채널 추가 시 최대 약 $21,465의 절감 가능성 추정
+* **기술** · Python, Pandas, scikit-learn, XGBoost, statsmodels
 
-### [다이캐스팅 — 실시간 불량 예측](https://github.com/JoshuaKim757/defect-prediction-die-casting)
+### [다이캐스팅 — 공정 불량 예측 & 의사결정 지원](https://github.com/JoshuaKim757/defect-prediction-die-casting)
 
-- **기간** · 2025.10 – 2025.11
-- **목표** · 사후 대응적인 수동 육안검사를, 실시간으로 불량을 예측하고 근본 원인까지 추적하는 모델로 대체
-- **결과** · PR-AUC 기준으로 LightGBM 선정, 3개 불량 그룹에서 F1 0.78–0.80 달성. SHAP으로 불량 유형별 원인 공정 변수 식별. 명시된 FN/FP 단위 비용 기준 10일당 약 ₩3.5M 절감 추정
-- **기술** · Python, scikit-learn, XGBoost, LightGBM, SHAP
-- **역할** · 팀 프로젝트 — 전처리, 모델링, 판정 로직, 비용 영향 분석을 개별 담당
+* **기간** · 2025.10 – 2025.11
+* **문제** · 공정·센서 데이터로 불량 가능성을 예측하고 주요 기여 변수를 작업자가 확인할 수 있는 판정 로직으로 연결
+* **결과** · LightGBM으로 주요 3개 불량 그룹 F1 0.78–0.80. SHAP 결과를 정상군 비교 기반 4단계 판정 로직으로 연결하고, 가정 기반 시뮬레이션에서 10일당 약 ₩3.5M의 비용 절감 가능성 추정
+* **역할** · 팀 프로젝트 — 데이터 전처리, 모델 비교 및 임계값 선정, 판정 로직, 비용 시뮬레이션 담당
+* **기술** · Python, scikit-learn, XGBoost, LightGBM
 
-### [서울 부동산 — 투자 전략 & 스크리닝 대시보드](https://github.com/JoshuaKim757/investment-screening-seoul-realestate)
+### [서울 부동산 — 투자 후보군 스크리닝 & 검증](https://github.com/JoshuaKim757/investment-screening-seoul-realestate)
 
-- **기간** · 2025.09 – 2025.10
-- **목표** · 세 가지 투자자 성향별 구(區) × 건물유형 투자 대상을 추천하고, 이 스코어링 프레임워크가 실제로 미래를 예측하는지 검증
-- **결과** · 모든 투자자 성향에서 중랑구가 1순위. OLS 회귀분석(R²=0.543)으로 "저렴해 보이는" 구의 가격 할인이 위치 프리미엄이 아니라 노후 건물 비중 효과임을 확인
-- **검증** · Temporal holdout 검증에서 이 프레임워크는 2022–2024년 시장을 **underperform**했고, 조정 없이 있는 그대로 보고
-- **기술** · Python, statsmodels, SciPy · 프로필별 실시간 전환이 가능한 React/SVG 인터랙티브 대시보드 포함
+* **기간** · 2025.09 – 2025.10
+* **문제** · 성장률·가격·변동성을 결합해 투자 성향별 구 × 건물유형 후보군을 선별하고, 해당 스코어링이 미래 구간에서도 유효한지 검증
+* **결과** · 중랑구가 세 투자 성향 모두의 핵심 후보군에 포함. OLS(R²=0.543)를 통해 낮은 평균 가격이 순수한 입지 저평가뿐 아니라 건물 연식·유형 등 주택 재고 구성과도 연결됨을 확인
+* **검증** · 7개 가중치 시나리오에서는 순위가 안정적이었지만 Temporal Holdout에서 2022–2024 서울 평균을 하회. 결과를 사후 조정하지 않고 정적 스코어링의 시장 국면 변화 취약성으로 보고
+* **기술** · Python, Pandas, statsmodels, SciPy · React/SVG 인터랙티브 대시보드
 
 ---
 
 ## 자격증
 
-- ADsP — 데이터분석 준전문가, 한국데이터산업진흥원 (2026년 3월)
-- SQLD — SQL 개발자, 한국데이터산업진흥원 (2026년 6월)
+* **ADsP** — 데이터분석 준전문가, 한국데이터산업진흥원 · 2026.03
+* **SQLD** — SQL 개발자, 한국데이터산업진흥원 · 2026.06
+
+---
 
 ## Contact
 
-📧 jkim43844@gmail.com · 🔗 [LinkedIn](https://www.linkedin.com/in/joshua-kim-87b478263/) · 🌐 [English portfolio (@Jkim8436)](https://github.com/Jkim8436)
+📧 [jkim43844@gmail.com](mailto:jkim43844@gmail.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/joshua-kim-87b478263/)
+🌐 [English Portfolio](https://github.com/Jkim8436)
